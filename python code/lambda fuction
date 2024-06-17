@@ -1,12 +1,15 @@
 import boto3
 
+In this usage, boto3.client() is a method that creates a low-level client for a specific AWS service. It's commonly used to interact with AWS services at a low level, providing direct access to the underlying API.
+
 s3 = boto3.client('s3')
 polly = boto3.client('polly')
 
 def lambda_handler(event, context):
     try:
-        # Get the bucket and key of the uploaded file
+        #This line extracts the name of the S3 bucket from the event data.
         bucket = event['Records'][0]['s3']['bucket']['name']
+        #key = event['Records'][0]['s3']['object']['key']: This line extracts the key (i.e., the path) of the object within the S3 bucket         from the event data.
         key = event['Records'][0]['s3']['object']['key']
         
         # Download the text file from S3
